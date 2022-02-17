@@ -1,0 +1,34 @@
+{
+    "name": "luan-tavares/list-methods",
+    "license": "MIT",
+    "description": "Simple List Methods",
+    "keywords": ["hubspot","api","integration"],
+    "type": "library",
+    "authors": [
+        {
+            "name": "Luan Tavares Lourenço",
+            "email": "luan.tavares.lourenco@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "LTL\\ListMethods\\": ["src/"]
+        }
+    },
+    "require": {
+        "php": "^8.0"
+    },
+    "require-dev": {
+        "larapack/dd": "1.*",
+        "phpunit/phpunit": "^9.5"
+    },
+    "scripts": {
+        "deploy-tag": [
+            "LTL\\ListMethods\\Deploy\\DeployTag::execute"
+        ],
+        "deploy": [
+            "LTL\\ListMethods\\Deploy\\Deploy::execute"
+        ]
+    }
+}
