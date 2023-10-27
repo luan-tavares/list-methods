@@ -25,14 +25,15 @@ abstract class B implements StaticPublicMethodsListableInterface
 {
     use StaticPublicMethodsListable;
 
-    public function a(string $test): void
+    public static function a(string $test): void
     {
     }
 
-    public function b(): string
+    public static function b(): string
     {
         return 'test 5';
     }
+
 }
 
 

@@ -7,21 +7,21 @@ use ReflectionMethod;
 
 abstract class PublicMethods
 {
-    public static function list(string $class): array
+    public static function list(string $class, bool $canBeStatic = false): array
     {
         $reflectionClass = new ReflectionClass($class);
 
-        return self::listPublicMethods($reflectionClass);
+        return self::listPublicMethods($reflectionClass, $canBeStatic);
     }
 
-    private static function listPublicMethods(ReflectionClass $reflectionClass): array
+    private static function listPublicMethods(ReflectionClass $reflectionClass, bool $canBeStatic): array
     {
         $publicMethods = $reflectionClass->getMethods(ReflectionMethod::IS_PUBLIC);
 
         $list = [];
 
         foreach ($publicMethods as $reflectionMethod) {
-            if (!self::isCorrectMethod($reflectionMethod, $reflectionClass)) {
+            if (!self::isCorrectMethod($reflectionMethod, $reflectionClass, $canBeStatic)) {
                 continue;
             }
             
@@ -31,9 +31,9 @@ abstract class PublicMethods
         return $list;
     }
 
-    private static function isCorrectMethod(ReflectionMethod $reflectionMethod, ReflectionClass $reflectionClass): bool
+    private static function isCorrectMethod(ReflectionMethod $reflectionMethod, ReflectionClass $reflectionClass, bool $canBeStatic): bool
     {
-        if ($reflectionMethod->isStatic()) {
+        if ($reflectionMethod->isStatic() && !$canBeStatic) {
             return false;
         }
 

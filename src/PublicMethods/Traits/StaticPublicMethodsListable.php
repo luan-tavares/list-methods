@@ -8,6 +8,6 @@ trait StaticPublicMethodsListable
 {
     public static function getMethods(): array
     {
-        return PublicMethods::list(self::class);
+        return PublicMethods::list(self::class, true);
     }
 }
